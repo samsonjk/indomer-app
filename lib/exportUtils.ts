@@ -1,7 +1,8 @@
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
+import { CalculationHistory } from "@/types";
 
-export const exportHistoryToExcel = (history: any[], sessionName: string) => {
+export const exportHistoryToExcel = (history: CalculationHistory[], sessionName: string) => {
   const worksheet = XLSX.utils.json_to_sheet(history);
   const workbook = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(workbook, worksheet, "History");

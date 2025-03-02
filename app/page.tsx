@@ -5,6 +5,7 @@ import { exportHistoryToExcel } from "@/lib/exportUtils";
 import UnitSelector from "@/components/UnitSelector";
 import SessionManager from "@/components/SessionManager";
 import { UnitOption } from "@/types";
+import { useRef } from "react";
 
 type CalculationHistory = {
   diameter?: number;
@@ -29,7 +30,7 @@ export default function Home() {
 
   const [history, setHistory] = useState<CalculationHistory[]>([]);
   const [sessionName, setSessionName] = useState<string>("DefaultSession");
-  const [sessions, setSessions] = useState<Record<string, CalculationHistory[]>>({});
+  const sessions = useRef<Record<string, CalculationHistory[]>>({});
 
   const calculate = () => {
     let newDiameter = diameter;
@@ -73,10 +74,7 @@ export default function Home() {
   };
 
   const saveSession = () => {
-    setSessions((prev) => ({
-      ...prev,
-      [sessionName]: [...history],
-    }));
+    sessions.current[sessionName] = [...history];
     alert(`Session "${sessionName}" saved!`);
   };
 

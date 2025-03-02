@@ -8,7 +8,7 @@ interface UnitSelectorProps {
 
 const UNIT_OPTIONS: UnitOption[] = ["m", "cm", "mm", "L/s", "m³/s", "m/s"];
 
-export default function UnitSelector({ label, value, onChange }: UnitSelectorProps) {
+export default function UnitSelector({value, onChange }: UnitSelectorProps) {
   return (
     <div>
       <select
